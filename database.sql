@@ -1,4 +1,4 @@
-CREATE TABLE members (
+CREATE TABLE สมัครสมาชิก (
     id INT AUTO_INCREMENT PRIMARY KEY,
     User_id VARCHAR(100),
     Fullname VARCHAR(100),
