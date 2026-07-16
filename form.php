@@ -3,9 +3,9 @@
 
 // ตั้งค่าการเชื่อมต่อฐานข้อมูล
 $host = 'localhost';
-$db   = '##############';  // เปลี่ยนเป็นชื่อฐานข้อมูลของคุณ
-$user = '##############';  // เปลี่ยนเป็น username ของคุณ
-$pass = '################';    // เปลี่ยนเป็น password ของคุณ
+$db   = 'Baan sen family';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -24,12 +24,14 @@ $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // รับค่า user_id ที่ได้จาก LIFF ผ่าน hidden field
     $user_id = $_POST['user_id'] ?? 'user123';
-    $product_name = $_POST['product_name'] ?? '';
-    $purchase_date = $_POST['purchase_date'] ?? '';
+    $fullname = $_POST['fullname'];
+    $Birthday = $_POST['Birthday'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
 
-    if ($product_name && $purchase_date) {
-        $stmt = $pdo->prepare("INSERT INTO products (user_id, product_name, purchase_date) VALUES (?, ?, ?)");
-        $stmt->execute([$user_id, $product_name, $purchase_date]);
+    if ($fullname && $Birthday && $phone && $address) {
+        $stmt = $pdo->prepare("INSERT INTO `สมัครสมาชิก`(User_id,Fullname,Birthday,phone,address)VALUES (?,?,?,?,?)");
+        $stmt->execute([$User_id, $Fullname, $Birthday, $phone, $address]);
         $message = "บันทึกข้อมูลเรียบร้อยแล้ว!";
     } else {
         $message = "กรุณากรอกข้อมูลให้ครบถ้วน";
@@ -40,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>บันทึกข้อมูลสินค้า IT</title>
+    <title>สมัครสมาชิก</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
@@ -92,29 +94,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    บันทึกข้อมูลสินค้า IT
+                    สมัครสมาชิก
                 </div>
-                <div class="card-body">
-                    <?php if($message): ?>
-                        <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
-                    <?php endif; ?>
-                    <form method="POST" action="">
-                        <!-- รับค่า user_id จาก LIFF -->
-                        <input type="hidden" name="user_id" id="user_id" value="">
-                        <div class="form-group">
-                            <label for="product_name">ชื่อสินค้า:</label>
-                            <select class="form-control" id="product_name" name="product_name" required>
-                                <option value="">-- เลือกสินค้า --</option>
-                                <option value="notebook">Notebook</option>
-                                <option value="keyboard">Keyboard</option>
-                                <option value="monitor">Monitor</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="purchase_date">วันที่ซื้อ:</label>
-                            <input type="date" class="form-control" id="purchase_date" name="purchase_date" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">บันทึกข้อมูล</button>
+                <div class="form-group">
+                    <label>ชื่อ-นามสกุล</label>
+                    <input type="text" class="form-control" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label>วันเกิด</label>
+                    <input type="date" class="form-control" name="Birthday" required>
+                </div>
+                <div class="form-group">
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type="text" class="form-control" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>ที่อยู่</label>
+                    <textarea class="form-control" name="address" rows="3" required></textarea>
+                </div>
+                        <button type="submit" class="btn btn-primary btn-block">สมัครสมาชิก</button>
                     </form>
                 </div>
             </div>
