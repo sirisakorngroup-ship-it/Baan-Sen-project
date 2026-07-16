@@ -23,8 +23,8 @@ try {
 $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // รับค่า user_id ที่ได้จาก LIFF ผ่าน hidden field
-    $user_id = $_POST['user_id'] ?? 'user123';
-    $fullname = $_POST['fullname'];
+    $user_id = $_POST['User_id'] ?? 'user123';
+    $fullname = $_POST['Fullname'];
     $Birthday = $_POST['Birthday'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
@@ -96,9 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-header text-center">
                     สมัครสมาชิก
                 </div>
+                <form method="POST" action="">
+                    <input type="hidden" name="User_id" id="user_id">
+                    <div class="form-group">
                 <div class="form-group">
                     <label>ชื่อ-นามสกุล</label>
-                    <input type="text" class="form-control" name="fullname" required>
+                    <input type="text" class="form-control" name="Fullname" required>
                 </div>
                 <div class="form-group">
                     <label>วันเกิด</label>
