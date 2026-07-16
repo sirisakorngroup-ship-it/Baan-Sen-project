@@ -1,7 +1,7 @@
 CREATE TABLE members (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id VARCHAR(100),
-    fullname VARCHAR(100),
+    User_id VARCHAR(100),
+    Fullname VARCHAR(100),
     Birthday VARCHAR(100),
     phone VARCHAR(20),
     address TEXT,
