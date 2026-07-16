@@ -23,13 +23,13 @@ try {
 $message = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // รับค่า user_id ที่ได้จาก LIFF ผ่าน hidden field
-    $user_id = $_POST['User_id'] ?? 'user123';
-    $fullname = $_POST['Fullname'];
+    $User_id = $_POST['User_id'] ?? 'user123';
+    $Fullname = $_POST['Fullname'];
     $Birthday = $_POST['Birthday'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
 
-    if ($fullname && $Birthday && $phone && $address) {
+    if ($Fullname && $Birthday && $phone && $address) {
         $stmt = $pdo->prepare("INSERT INTO `สมัครสมาชิก`(User_id,Fullname,Birthday,phone,address)VALUES (?,?,?,?,?)");
         $stmt->execute([$User_id, $Fullname, $Birthday, $phone, $address]);
         $message = "บันทึกข้อมูลเรียบร้อยแล้ว!";
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
       // เมื่อหน้าโหลดเสร็จ ให้ initialize LIFF  
       window.onload = function() {
-          liff.init({ liffId: '#########################' })
+          liff.init({ liffId: '2010720555-BKLtocx1' })
           .then(() => {
               // ตรวจสอบว่าผู้ใช้ได้เข้าสู่ระบบแล้วหรือยัง
               if (!liff.isLoggedIn()) {
@@ -127,4 +127,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+</html>
 </html>
